@@ -1,0 +1,17 @@
+/* Сделаем сам слайдер чуть уже и аккуратно скруглим */
+#heroCarousel { max-width: 1000px; margin: 0 auto; }
+#heroCarousel .carousel-inner { border-radius: .75rem; overflow: hidden; }
+
+/* Фиксируем высоту слайда и показываем изображение целиком */
+#heroCarousel .carousel-item { height: 640px; }              /* выбери 280–420px по вкусу */
+#heroCarousel .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;                                        /* было cover — ставим contain */
+  background: #f0f2f5;                                        /* «поля» вокруг картинки */
+}
+
+/* Чуть улучшим читаемость подписи */
+#heroCarousel .carousel-caption {
+  text-shadow: 0 2px 6px rgba(0,0,0,.6);
+}
