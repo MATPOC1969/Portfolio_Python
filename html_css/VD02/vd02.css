@@ -1,0 +1,130 @@
+/* Сброс */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Фон и базовая типографика */
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background-image: url("img/universe.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #111;
+}
+
+/* Заголовок */
+h1 {
+  text-align: center;
+  color: #fff;
+  margin: 20px 0 10px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: rgba(255,255,255,.35);
+  margin: 10px 0 24px;
+}
+
+/* Сетка карточек: 4 в ряд */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  padding: 0 16px 40px;
+  margin: 0 auto;
+}
+
+/* Одна карточка: слева картинка, справа текст */
+.card-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  backdrop-filter: blur(2px);
+}
+
+/* Блок с изображением */
+.card-img {
+  flex: 0 0 140px;           /* фиксируем ширину колонки с картинкой */
+  text-align: center;
+}
+
+.card-img h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.card-img img {
+  width: 100%;
+  height: 170px;             /* одинаковая высота для выравнивания */
+  object-fit: contain;       /* сохраняем пропорции */
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* Текст справа от картинки */
+.card-text {
+  flex: 1 1 auto;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #222;
+  word-wrap: break-word;
+}
+
+/* Адаптив: 3/2/1 в ряд на меньших экранах */
+@media (max-width: 1200px) {
+  .card-container { grid-template-columns: repeat(3, minmax(260px, 1fr)); }
+}
+@media (max-width: 900px) {
+  .card-container { grid-template-columns: repeat(2, minmax(260px, 1fr)); }
+}
+@media (max-width: 560px) {
+  .card-container { grid-template-columns: 1fr; }
+  .card-img { flex-basis: 120px; }
+  .card-img img { height: 150px; }
+}
+
+/* Эффект дрожания */
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+/* дрожь только когда карточка НЕ активна */
+.card-wrapper:hover:not(.active) {
+  animation: shake 0.5s infinite;
+  will-change: transform;
+}
+
+/* активная карточка — выезжает вперёд и не дрожит */
+.card-wrapper.active {
+  transform: scale(1.8);
+  transform-origin: center center;
+  z-index: 20;
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  animation: none; /* важно: гасим дрожь */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* на всякий случай база */
+.card-wrapper {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+

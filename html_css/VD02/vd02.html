@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Команда спасения Вселенной</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Команда спасения Вселенной</h1>
+    <hr>
+    <div class="card-container">
+        <div class="card-wrapper">
+            <div class="card-img">
+                <h2>Бендер</h2>
+                <img src="img/Bender.jpg" alt="Бендер">
+            </div>
+            <div class="card-text">
+                <p>Бендер — комический антигерой, сквернослов, алкоголик, заядлый курильщик сигар, почитатель порнографии для роботов (в виде электрических схем)</p>
+            </div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card-img">
+                <h2>C3PO</h2>
+                <img src="img/C3PO.jpg" alt="C3PO">
+            </div>
+            <div class="card-text">
+                <p>Основная функция C-3PO как протокольного дроида — консультации по этикету и переводу так, чтобы встречи разных культур проходили гладко</p>
+            </div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card-img">
+                <h2>ChatGPT</h2>
+                <img src="img/ChatGPT.jpg" alt="ChatGPT">
+            </div>
+            <div class="card-text">
+                <p>Чат-бот с генеративным искусственным интеллектом, разработанный компанией OpenAI и способный работать в диалоговом режиме, поддерживающий запросы на естественных языках</p>
+            </div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card-img">
+                <h2>Marvin</h2>
+                <img src="img/Marvin.jpg" alt="Марвин">
+            </div>
+            <div class="card-text">
+                <p>Марвин — бортовой робот космического корабля «Золотое сердце». Создан в лабораториях Кибернетической корпорации Сириуса</p>
+            </div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card-img">
+                <h2>Miko</h2>
+                <img src="img/Miko.jpg" alt="Мико">
+            </div>
+            <div class="card-text">
+                <p>Предназначалась для развлечений, но самостоятельно приняла решение о том, что она достойна большего и примкнула к команде</p>
+            </div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card-img">
+                <h2>R2-D2</h2>
+                <img src="img/R2-D2.jpg" alt="R2-D2">
+            </div>
+            <div class="card-text">
+                <p>R2 имеет бочкообразную форму с вращающимся куполом, исполняющим роль его головы и включающим единственный глаз. Он имеет три подпорки, которые позволяют ему ходить, и на каждой имеется колесо.</p>
+            </div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card-img">
+                <h2>TARS</h2>
+                <img src="img/TARS.jpg" alt="TARS">
+            </div>
+            <div class="card-text">
+                <p>Прямоугольник с двигающимися частями</p>
+            </div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card-img">
+                <h2>Wall-E</h2>
+                <img src="img/Wall-E.jpg" alt="Валл-И">
+            </div>
+            <div class="card-text">
+                <p>Вселенский Аннигилятор Ландшафтный Лёгкий, Интеллектуальный</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.card-wrapper');
+
+  cards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.stopPropagation(); // чтобы клик по карточке не всплывал на body
+
+      // если уже активна — свернуть
+      if (card.classList.contains('active')) {
+        card.classList.remove('active');
+        return;
+      }
+
+      // снять активность со всех и активировать текущую
+      cards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    });
+  });
+
+  // клик по пустому месту страницы — закрыть все
+  document.addEventListener('click', () => {
+    cards.forEach(c => c.classList.remove('active'));
+  });
+});
+</script>
+
+
+</body>
+</html>
