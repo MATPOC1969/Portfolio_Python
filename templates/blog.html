@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блог героев</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <!-- Меню -->
+  <nav class="topbar">
+    <div class="brand">Команда Вселенной</div>
+    <div class="menu">
+      <a href="{{ url_for('index') }}">Главная</a>
+      <a href="{{ url_for('blog') }}">Блог</a>
+      <a href="{{ url_for('contacts') }}">Контакты</a>
+    </div>
+  </nav>
+
+  {% if hero %}
+    <h1>Блог: {{ hero.name }}</h1>
+    <hr>
+    <div class="card-wrapper">
+      <div class="card-img">
+        <img src="{{ url_for('static', filename='image/' + hero.img) }}" alt="{{ hero.name }}">
+      </div>
+      <div class="card-text">
+        <p><strong>Хроники приключений:</strong></p>
+        <p>{{ hero.adventure }}</p>
+        <p style="margin-top:12px;">
+          <a href="{{ url_for('blog') }}">← Вернуться к списку блогов</a>
+        </p>
+      </div>
+    </div>
+  {% else %}
+    <h1>Блог героев</h1>
+    <hr>
+    <ul>
+      {% for slug, h in heroes.items() %}
+        <li><a href="{{ url_for('blog', hero=slug) }}">{{ h.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</body>
+</html>

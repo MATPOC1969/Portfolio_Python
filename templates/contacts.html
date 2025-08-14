@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты / Биографии</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <!-- Меню -->
+  <nav class="topbar">
+    <div class="brand">Команда Вселенной</div>
+    <div class="menu">
+      <a href="{{ url_for('index') }}">Главная</a>
+      <a href="{{ url_for('blog') }}">Блог</a>
+      <a href="{{ url_for('contacts') }}">Контакты</a>
+    </div>
+  </nav>
+
+  <h1>Контакты / Биографии героев</h1>
+  <hr>
+
+  {% for slug, h in heroes.items() %}
+  <div class="card-wrapper">
+    <div class="card-img">
+      <h2>{{ h.name }}</h2>
+      <img src="{{ url_for('static', filename='image/' + h.img) }}" alt="{{ h.name }}">
+    </div>
+    <div class="card-text">
+      <p><strong>Происхождение:</strong> {{ h.bio }}</p>
+      <p><a href="{{ url_for('blog', hero=slug) }}">→ Читать блог героя</a></p>
+    </div>
+  </div>
+  {% endfor %}
+</body>
+</html>
